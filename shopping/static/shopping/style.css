@@ -1,0 +1,85 @@
+html, body {
+  margin: 0px;
+  padding: 0px; }
+
+.productimg {
+  height: 250px; }
+
+body, html {
+  background-color: #32383e; }
+
+#topbar {
+  background-color: #32383e;
+  color: white; }
+  #topbar a {
+    color: white; }
+
+.bodybox {
+  background-color: #fbe7c7;
+  padding-bottom: 50px; }
+
+.border {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  width: 470px;
+  margin-left: -235px;
+  letter-spacing: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%; }
+
+.parallax {
+  /* Set a specific height */
+  margin-top: -1.5em;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.parralax-home {
+  background-image: url("/static/shopping/images/uni.jpg");
+  height: 800px; }
+
+.parralax-detail {
+  background-image: url("/static/shopping/images/student.jpg");
+  background-position-y: -285px;
+  height: 500px; }
+
+.lead {
+  font-size: 30px !important; }
+
+.container-fluid.detail {
+  padding-top: 50px;
+  color: white;
+  background-color: #32383e; }
+  .container-fluid.detail .productimg {
+    margin-left: 50px; }
+  .container-fluid.detail .row {
+    padding-bottom: 80px; }
+
+.btn-unilisa {
+  background-color: transparent;
+  color: white;
+  border-color: white; }
+  .btn-unilisa:disabled {
+    background-color: #776a60; }
+  .btn-unilisa:hover {
+    background-color: #007bff; }
+
+.itembox {
+  color: white; }
+  .itembox .card-header {
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #776a60;
+    letter-spacing: 10px; }
+  .itembox .card, .itembox .card-body {
+    border-radius: 20px;
+    background: #32383e; }
+
+/*# sourceMappingURL=style.css.map */

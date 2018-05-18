@@ -1,0 +1,37 @@
+
+
+<!-- Container element -->
+<div class="parallax parralax-home">
+    <span class="border">UniLIsa Online Shop</span>
+</div>
+
+<div class="bodybox">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <!-- h1 class="display-4">UniLisa Shop</h1> -->
+        <p class="lead">Hey there! Looking for some cool stuff from the uni? <br/> Have a look at our online shop from
+            the University of Liechtenstein.
+        </p>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for item in all_items %}
+                <div class="col-sm-6 itembox">
+                    <div class="card-deck mb-3 text-center">
+                        <div class="card mb-4 box-shadow">
+                            <div class="card-header">
+                                <h4 class="my-0 font-weight-normal">{{ item.item_name }}</h4>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <img class="productimg" src="/{{ item.item_photo }}">
+                                </ul>
+                                <a href="/shop/{{ item.id }}" class="btn btn-lg btn-unilisa btn-outline-primary">View
+                                    Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
