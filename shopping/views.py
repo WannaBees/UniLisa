@@ -16,4 +16,7 @@ def detail(request, item_id):
         raise Http404("This item does not exist. To continue shopping, please go back to the main page!")
     return render(request, 'shopping/index.html', {'item': item,'subview':'detail'})
 
+def login(request):
+    return render(request, 'shopping/index.html',{'subview':'login'})
+
 

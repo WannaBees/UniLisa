@@ -25,17 +25,23 @@
     <nav class="my-2 my-md-0 mr-md-3">
         <a class="btn btn-outline-primary btn-unilisa" href="#">Create Account</a>
     </nav>
-    <a class="btn btn-outline-primary btn-unilisa" href="#">Login</a>
+    {% if subview != 'login' %}
+    <a class="btn btn-outline-primary btn-unilisa" href="/account/login">Login</a>
+    {% endif %}
 </div>
 
 {% if subview == 'overview' %}
     {% include "shopping/overview.html" with all_items=all_items only %}
     {% elif subview == 'detail' %}
     {% include "shopping/detail.html" with item=item only %}
+    {% elif subview == 'login' %}
+    {% include "shopping/login.html"%}
 {% endif %}
 
 
+<div class="footer">
 <img class="mb-2" src="/shopping/static/shopping/images/background.png?v1.1" alt="" width="200">
+    </div>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
