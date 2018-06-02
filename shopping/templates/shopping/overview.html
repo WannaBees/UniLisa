@@ -1,8 +1,11 @@
-
-
 <!-- Container element -->
-<div class="parallax parralax-home">
-    <span class="border">UniLIsa Online Shop</span>
+
+{% if applyFilter == True%}
+    <div class="parallax parralax-home-reduced">
+{% else %}
+    <div class="parallax parralax-home">
+{% endif %}
+<span class="border">UniLIsa Online Shop</span>
 </div>
 
 <div class="bodybox">

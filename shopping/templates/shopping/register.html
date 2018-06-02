@@ -1,0 +1,12 @@
+ <div class="parallax parralax-register">
+      <span class="border">Register now</span>
+  </div>
+
+  <div class="login-box">
+         <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign up</button>
+  </form>
+      </div>
+

@@ -33,6 +33,17 @@ body, html {
   background-repeat: no-repeat;
   background-size: cover; }
 
+.parralax-home-reduced {
+  background-image: url("/static/shopping/images/uni.jpg");
+  height: 300px; }
+  .parralax-home-reduced .border {
+    width: 470px;
+    margin-left: -235px;
+    letter-spacing: 10px;
+    position: absolute;
+    left: 50%;
+    top: 20%; }
+
 .parralax-home {
   background-image: url("/static/shopping/images/uni.jpg");
   height: 800px; }
@@ -52,14 +63,26 @@ body, html {
 .parralax-login {
   background-image: url("/static/shopping/images/unishop.jpg");
   background-position-y: -25px;
-  height: 400px; }
+  height: 500px; }
   .parralax-login .border {
     width: 350px;
     margin-left: -175px;
     letter-spacing: 10px;
     position: absolute;
     left: 50%;
-    top: 270px; }
+    top: 450px; }
+
+.parralax-register {
+  background-image: url("/static/shopping/images/createaccount.jpeg");
+  background-position-y: -5px;
+  height: 420px; }
+  .parralax-register .border {
+    width: 350px;
+    margin-left: -175px;
+    letter-spacing: 10px;
+    position: absolute;
+    left: 50%;
+    top: 350px; }
 
 .lead {
   font-size: 30px !important; }
@@ -104,9 +127,22 @@ body, html {
   top: 30px; }
 
 .footer {
-  margin-top: 100px; }
+  margin-top: 5px; }
 
 .login-label {
   color: white; }
+
+#searchform {
+  float: left;
+  height: 100%; }
+  #searchform input {
+    padding: 0.1rem 0.5rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+    border-color: white;
+    background-color: white;
+    width: 180px;
+    margin-right: 15px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -22,20 +22,31 @@
 
 <div id="topbar" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow">
     <h5 class="my-0 mr-md-auto font-weight-normal"><a style="text-decoration: none" href="/shop">UniLIsa Shop</a></h5>
-    <nav class="my-2 my-md-0 mr-md-3">
-        <a class="btn btn-outline-primary btn-unilisa" href="#">Create Account</a>
+    <nav class="my-2 my-md-0 mr-md-3" >
+    <form method = "get" id="searchform" action="/shop">
+     <input name = "search"  class="" placeholder="Search..."/>
+    </form>
+
+
+         {% if subview != 'register' and not loggedIn %}
+        <a class="btn btn-outline-primary btn-unilisa" href="/create/register/">Create Account</a>
+         {% endif %}
     </nav>
-    {% if subview != 'login' %}
+    {% if subview != 'login' and not loggedIn %}
     <a class="btn btn-outline-primary btn-unilisa" href="/account/login">Login</a>
+    {%  else %}
+        {{ username }} (<a class="btn btn-outline-primary btn-unilisa" href="/shop/?action=logout">Logout</a>)
     {% endif %}
 </div>
 
 {% if subview == 'overview' %}
-    {% include "shopping/overview.html" with all_items=all_items only %}
+    {% include "shopping/overview.html"  %}
     {% elif subview == 'detail' %}
     {% include "shopping/detail.html" with item=item only %}
     {% elif subview == 'login' %}
     {% include "shopping/login.html"%}
+    {% elif subview == 'register' %}
+    {% include "shopping/register.html"%}
 {% endif %}
 
 
