@@ -9,8 +9,13 @@ body, html {
   background-color: #32383e; }
 
 #topbar {
+  vertical-align: middle;
   background-color: #32383e;
   color: white; }
+  #topbar .badge-pill {
+    position: relative;
+    top: -3px;
+    left: 0px; }
   #topbar a {
     color: white; }
 
@@ -96,6 +101,9 @@ body, html {
   .container-fluid.detail .row {
     padding-bottom: 80px; }
 
+#searchform input {
+  border-color: white; }
+
 .btn-unilisa {
   background-color: transparent;
   color: white;
@@ -108,10 +116,11 @@ body, html {
 .itembox {
   color: white; }
   .itembox .card-header {
-    -moz-border-radius-topleft: 20px;
+    /* -moz-border-radius-topleft: 20px;
     -moz-border-radius-topright: 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    */
     background-color: #776a60;
     letter-spacing: 10px; }
   .itembox .card, .itembox .card-body {
@@ -124,7 +133,21 @@ body, html {
   position: relative;
   margin-left: -200px;
   left: 50%;
+  color: white;
   top: 30px; }
+  .login-box .helptext {
+    display: none; }
+  .login-box input {
+    margin-right: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    float: right; }
+  .login-box label {
+    margin-right: 5px;
+    margin-bottom: 20px;
+    display: inline-block; }
+  .login-box ul {
+    display: none; }
 
 .footer {
   margin-top: 5px; }
@@ -144,5 +167,44 @@ body, html {
     background-color: white;
     width: 180px;
     margin-right: 15px; }
+
+.sorrybox {
+  width: 700px;
+  position: relative;
+  left: 50%;
+  top: 0%;
+  margin-left: -350px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 18px;
+  font-size: 25px;
+  border-radius: 10px; }
+
+#cartlist {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  margin-left: 10%;
+  text-align: center; }
+
+#cartlist td, #cartlist th {
+  border: 1px solid #ddd;
+  padding: 8px; }
+
+#cartlist tr:nth-child(even) {
+  background-color: grey; }
+
+#cartlist tr:nth-child(odd) {
+  background-color: grey; }
+
+#cartlist tr:hover {
+  background-color: #ddd; }
+
+#cartlist th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  width: 400px; }
 
 /*# sourceMappingURL=style.css.map */

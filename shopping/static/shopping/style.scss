@@ -13,12 +13,22 @@ body, html {
 }
 
 #topbar {
+  vertical-align: middle;
+  .badge-pill{
+    position: relative;
+    top:-3px;
+    left:0px;
+  }
   a {
     color: white;
   }
   background-color: #32383e;
   color: white;
+
 }
+
+
+
 
 .bodybox {
   background-color: rgb(251, 231, 199);
@@ -122,6 +132,14 @@ body, html {
 
 }
 
+#searchform {
+  input {
+    border-color: white;
+  }
+
+}
+
+
 .btn-unilisa {
   background-color: transparent;
   &:disabled {
@@ -136,12 +154,14 @@ body, html {
 
 .itembox {
   .card-header {
-    -moz-border-radius-topleft: 20px;
+    /* -moz-border-radius-topleft: 20px;
     -moz-border-radius-topright: 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    */
     background-color: rgb(119, 106, 96);
     letter-spacing: 10px;
+
   }
 
   .card, .card-body {
@@ -158,7 +178,27 @@ body, html {
   position: relative;
   margin-left: -200px;
   left: 50%;
+  color: white;
   top: 30px;
+  .helptext {
+    display: none;
+
+  }
+  input {
+    margin-right: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    float: right;
+  }
+  label {
+    margin-right: 5px;
+    margin-bottom: 20px;
+    display: inline-block;
+
+  }
+  ul {
+    display: none;
+  }
 }
 
 .footer {
@@ -183,4 +223,43 @@ body, html {
     width: 180px;
     margin-right: 15px;
   }
+}
+
+.sorrybox {
+  width: 700px;
+  position: relative;
+  left: 50%;
+  top: 0%;
+  margin-left: -350px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 18px;
+  font-size: 25px;
+  border-radius: 10px;
+}
+
+#cartlist {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+}
+
+#cartlist td, #cartlist th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#cartlist tr:nth-child(even){background-color: grey}
+#cartlist tr:nth-child(odd){background-color: grey}
+
+#cartlist tr:hover {background-color: #ddd;}
+
+#cartlist th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    width:400px;
 }

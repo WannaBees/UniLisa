@@ -1,0 +1,49 @@
+<!-- Container element -->
+
+{% if applyFilter == True %}
+    <div class="parallax parralax-home-reduced">
+{% else %}
+    <div class="parallax parralax-home-reduced">
+{% endif %}
+<span class="border">UniLIsa Online Shop</span>
+</div>
+
+
+<div class="bodybox">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" style="width: 100%">
+        <!-- h1 class="display-4">UniLisa Shop</h1> -->
+        <span class="border" style="width:250px">Shopping Cart
+         </span>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% if cart_items|length == 0 %}
+                <div class="col-sm-12">
+                    No items in your shopping cart.
+                </div>
+            {% endif %}
+            <div class="col-sm-12">
+                <table id="cartlist">
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                    {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.product.item_name }} </td>
+                            <td>{{ item.quantity }} </td>
+                            <td> {{ item.product.price }} CHF</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a href="/shop/order" class="btn btn-primary" style="margin-top: 30px">Purchase for {{ order_sum }}
+                    CHF</a>
+            </div>
+        </div>
+    </div>
+</div>

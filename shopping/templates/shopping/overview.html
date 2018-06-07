@@ -8,6 +8,7 @@
 <span class="border">UniLIsa Online Shop</span>
 </div>
 
+
 <div class="bodybox">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <!-- h1 class="display-4">UniLisa Shop</h1> -->
@@ -17,6 +18,16 @@
     </div>
     <div class="container">
         <div class="row">
+        {%if all_items|length == 0 %}
+           <div class="col-sm-12 itembox">
+                    <div class="card-deck mb-3 text-center">
+                            <div class="sorrybox" >
+                                <h4 class=" font-weight-normal" > Sorry - we could not find the item you were searching for...
+            </div>
+                    </div>
+                            </div>
+                                </h4>
+        {%endif%}
             {% for item in all_items %}
                 <div class="col-sm-6 itembox">
                     <div class="card-deck mb-3 text-center">

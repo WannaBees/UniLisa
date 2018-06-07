@@ -8,14 +8,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
-
+    {{ form.media }}
     <title>UniLisa Shop</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="../../shopping/static/shopping/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="../../shopping/static/shopping/style.css" type="text/css">
-
-    <!-- Custom styles for this template -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -24,29 +25,43 @@
     <h5 class="my-0 mr-md-auto font-weight-normal"><a style="text-decoration: none" href="/shop">UniLIsa Shop</a></h5>
     <nav class="my-2 my-md-0 mr-md-3" >
     <form method = "get" id="searchform" action="/shop">
-     <input name = "search"  class="" placeholder="Search..."/>
+     <input name = "search"  class="" style="margin-right:20px;" placeholder="Search..."/>
     </form>
-
-
+    {% if loggedIn %}
+    <a href="/shop/cart"><i style="font-size:25px;margin-top: 5px" class="fas fa-shopping-cart"></i> <span class="badge-pill badge badge-light">{{ shoppingCartItemCount }} item{%if shoppingCartItemCount != 1%}s{%endif%}
+    {% endif %}
+    </span></a>
          {% if subview != 'register' and not loggedIn %}
-        <a class="btn btn-outline-primary btn-unilisa" href="/create/register/">Create Account</a>
+        <a class="btn btn-outline-primary btn-unilisa" style="margin-left: 10px;" href="/create/register/">Create Account</a>
          {% endif %}
     </nav>
     {% if subview != 'login' and not loggedIn %}
     <a class="btn btn-outline-primary btn-unilisa" href="/account/login">Login</a>
     {%  else %}
-        {{ username }} (<a class="btn btn-outline-primary btn-unilisa" href="/shop/?action=logout">Logout</a>)
+        {{ username }} &nbsp; <a  style="margin-left: 10px;" class="btn btn-outline-primary btn-unilisa" href="/shop/?action=logout">Logout</a>
     {% endif %}
 </div>
 
+{%if notification %}
+   <div class="notification"> <h1> {{ notification  }}</h1> </div>
+{%endif %}
+
+
+
 {% if subview == 'overview' %}
     {% include "shopping/overview.html"  %}
+    {% elif subview == 'cart' %}
+    {% include "shopping/cart.html"  %}
     {% elif subview == 'detail' %}
-    {% include "shopping/detail.html" with item=item only %}
+    {% include "shopping/detail.html" %}
     {% elif subview == 'login' %}
     {% include "shopping/login.html"%}
     {% elif subview == 'register' %}
     {% include "shopping/register.html"%}
+    {% elif subview == 'orderconfirmation' %}
+    {% include "shopping/order_confirmation.html"%}
+    {% elif subview == 'order' %}
+    {% include "shopping/order.html"%}
 {% endif %}
 
 

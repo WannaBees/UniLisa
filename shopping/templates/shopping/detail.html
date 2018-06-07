@@ -14,7 +14,11 @@
                 <h3>{{ item.item_description }}</h3>
                 <br/>
                  <br/>
-                <a class="btn-lg btn btn-outline-primary btn-unilisa"  href="?action=addtocart&item_id={{ item.item_id }}">Add to Shopping Cart for  {{ item.price }} </a>
+                {% if not loggedIn %}
+                Please login to shop.
+                {%  else %}
+                <a class="btn-lg btn btn-outline-primary btn-unilisa"  href="/shop/{{ item.id }}/addToCart">Add to Shopping Cart for  {{ item.price }} CHF </a>
+                {% endif %}
             </div>
 
         </div>

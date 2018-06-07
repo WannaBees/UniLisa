@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+EMAIL_HOST = "w01393cb.kasserver.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "m045a65f"
+EMAIL_HOST_PASSWORD = "3t3D3qoPKh99pbdR"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -27,6 +34,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# maps api key:
+#GOOGLE_API_KEY = 'AIzaSyAUGwS7qx3AnS83PpHs9IwlrumqYL-flk0'
 
 # Application definition
 
@@ -37,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
