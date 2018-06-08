@@ -1,12 +1,17 @@
  <div class="parallax parralax-register">
-      <span class="border">Order now</span>
+      <span class="border" style="text-align:center;" >Order now</span>
   </div>
-
-  <div class="login-box">
+  <div class="login-box" >
+            <div style="margin-bottom:20px"> Please enter your invoice and delivery details here:
+                 </div>
          <form method="post" >
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Purchase </button>
+    <div style="margin-bottom:20px"> On the next page you will be redirected to enter your payment details. Once you have entered your payment details, you will receive a confirmation mail.
+                 </div>
+             <button type="submit" class="btn btn-lg btn-unilisa btn-outline-primary" style="margin-left: 120px;"  >Purchase Now</button>
   </form>
+
       </div>
+
 

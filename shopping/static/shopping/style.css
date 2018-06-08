@@ -116,11 +116,10 @@ body, html {
 .itembox {
   color: white; }
   .itembox .card-header {
-    /* -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topleft: 20px;
     -moz-border-radius-topright: 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    */
     background-color: #776a60;
     letter-spacing: 10px; }
   .itembox .card, .itembox .card-body {
@@ -191,19 +190,19 @@ body, html {
   padding: 8px; }
 
 #cartlist tr:nth-child(even) {
-  background-color: grey; }
+  background-color: blanchedalmond; }
 
 #cartlist tr:nth-child(odd) {
-  background-color: grey; }
+  background-color: blanchedalmond; }
 
 #cartlist tr:hover {
-  background-color: #ddd; }
+  background-color: grey; }
 
 #cartlist th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #32383e;
   color: white;
   width: 400px; }
 

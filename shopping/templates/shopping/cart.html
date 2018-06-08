@@ -5,24 +5,23 @@
 {% else %}
     <div class="parallax parralax-home-reduced">
 {% endif %}
-<span class="border">UniLIsa Online Shop</span>
+<span class="border" style="text-align: center">Shopping Cart</span>
 </div>
 
 
 <div class="bodybox">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" style="width: 100%">
-        <!-- h1 class="display-4">UniLisa Shop</h1> -->
-        <span class="border" style="width:250px">Shopping Cart
-         </span>
     </div>
     <div class="container">
         <div class="row">
             {% if cart_items|length == 0 %}
                 <div class="col-sm-12">
-                    No items in your shopping cart.
+                    <div style="text-align: center; font-size:30px;" >No items in your shopping cart.
+                    </div>
                 </div>
-            {% endif %}
-            <div class="col-sm-12">
+                {%else%}
+
+            <div class="col-sm-12" style="margin-bottom: 50px;">
                 <table id="cartlist">
                     <tr>
                         <th>Product</th>
@@ -41,9 +40,10 @@
         </div>
         <div class="row">
             <div class="col-sm-12 text-center">
-                <a href="/shop/order" class="btn btn-primary" style="margin-top: 30px">Purchase for {{ order_sum }}
+                <a href="/shop/order" class="btn-lg btn-primary" style="margin-top: 30px;">Purchase for {{ order_sum }}
                     CHF</a>
             </div>
+                {% endif %}
         </div>
     </div>
 </div>

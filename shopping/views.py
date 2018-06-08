@@ -26,7 +26,7 @@ def register(request):
             user = authenticate(username=username, password=raw_password)
             djangologin(request, user)
             #return redirect('index', args=(notification))
-            return HttpResponseRedirect("/shop/orderconfirmation")
+            return HttpResponseRedirect("/shop")
     else:
         form = SignUpForm()
     site_env = {'subview': 'register','form':form}
@@ -39,11 +39,16 @@ def order(request):
         if form.is_valid():
             #form.save()
             zip = form.cleaned_data.get('zip')
+            street = form.cleaned_data.get('street')
+            streetnumber = form.cleaned_data.get('streetnumber')
+            city = form.cleaned_data.get('city')
+            country = form.cleaned_data.get('country')
             complete_order(request)
             email = request.user.email
             send_mail(
-                'Order confirmation',
-                'Hallo ' + request.user.username + ' \n\r Deine zip ist '+zip,
+                'Order Confirmation',
+                'Dear ' + request.user.username + ' \n\r Thank you for your order.' + '\n\r Your order will be delivered to the following address: \n\r'+str(street)
+                + ' ' + str(streetnumber) + '\n\r' + str(city) + ' ' + str(zip) + '\n\r' + country + '\n\r Your UniLIsa-Team ',
                 'noreply@huck-it.de',
                 [email],
                 fail_silently=False,
@@ -74,7 +79,7 @@ def complete_order(request):
 
 
 
-notificationDict = {'registered':'You have successfully signed up!'}
+notificationDict = {'registered':'You have successfully signed up!','outofstock':'Sorry, we are out of stock'}
 
 def index(request):
 
@@ -138,8 +143,13 @@ def cart(request):
     user_id = request.user.username
     cartitems = userCartItems(user_id)
     print("has cart items for cart: "+str(len(cartitems)))
-    prices = map(lambda  item: item.product.price * item.quantity, cartitems )
-    order_sum = reduce(lambda x,y: x +  y, prices)
+    prices = map(lambda item: item.product.price * item.quantity, cartitems)
+
+    if len(cartitems) == 0:
+        order_sum = 0
+    else:
+        order_sum = reduce(lambda x, y: x + y, prices)
+
     site_env = {'subview': 'cart','cart_items': cartitems,'order_sum': order_sum}
     env = environment(request, site_env)
     return render(request, 'shopping/index.html', env)
@@ -204,7 +214,11 @@ def detail(request, item_id):
 
         if action == "addToCart":
             print("add item to cart: " + str(item.id))
-            addToCart(request.user.username,item,1)
+            try:
+                addToCart(request.user.username,item,1)
+            except:
+                return HttpResponseRedirect("/shop/" + str(item_id)+"?notification=outofstock")
+
             return HttpResponseRedirect("/shop/"+str(item_id))
     except Item.DoesNotExist:
         raise Http404("This item does not exist. To continue shopping, please go back to the main page!")

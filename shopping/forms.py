@@ -18,11 +18,17 @@ class SignUpForm(UserCreationForm):
 
 class OrderModel(Model):
     street = forms.CharField(max_length=30, required=True)
+    streetnumber = forms.CharField(max_length=30, required=True)
     zip = forms.CharField(max_length=30, required=False)
+    city = forms.CharField(max_length=30, required=True)
+    country = forms.CharField(max_length=30, required=True)
 
 
 
 
 class OrderForm(forms.Form):
     street = forms.CharField(max_length=30, required=True)
+    streetnumber= forms.CharField(max_length=30, required=True)
     zip = forms.CharField(max_length=30, required=False)
+    city= forms.CharField(max_length=30, required=True)
+    country = forms.CharField(max_length=30, required=True)
