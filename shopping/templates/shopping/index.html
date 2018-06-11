@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <!- - Loads the path to your static files - - >
 {% load staticfiles %}
-<!doctype html>
+<!--suppress ALL -->
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -43,7 +44,7 @@
 </div>
 
 {%if notification %}
-   <div class="notification"> <h1> {{ notification  }}</h1> </div>
+   <div class="notification">  {{ notification  }}  </div>
 {%endif %}
 
 

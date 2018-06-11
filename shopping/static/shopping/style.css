@@ -1,23 +1,10 @@
 html, body {
-  margin: 0px;
-  padding: 0px; }
+  margin: 0;
+  padding: 0;
+  background-color: #32383e; }
 
 .productimg {
   height: 250px; }
-
-body, html {
-  background-color: #32383e; }
-
-#topbar {
-  vertical-align: middle;
-  background-color: #32383e;
-  color: white; }
-  #topbar .badge-pill {
-    position: relative;
-    top: -3px;
-    left: 0px; }
-  #topbar a {
-    color: white; }
 
 .bodybox {
   background-color: #fbe7c7;
@@ -33,9 +20,7 @@ body, html {
   /* Set a specific height */
   margin-top: -1.5em;
   /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: no-repeat fixed center;
   background-size: cover; }
 
 .parralax-home-reduced {
@@ -100,6 +85,17 @@ body, html {
     margin-left: 50px; }
   .container-fluid.detail .row {
     padding-bottom: 80px; }
+
+#topbar {
+  vertical-align: middle;
+  background-color: #32383e;
+  color: white; }
+  #topbar .badge-pill {
+    position: relative;
+    top: -3px;
+    left: 0; }
+  #topbar a {
+    color: white; }
 
 #searchform input {
   border-color: white; }
@@ -171,7 +167,7 @@ body, html {
   width: 700px;
   position: relative;
   left: 50%;
-  top: 0%;
+  top: 0;
   margin-left: -350px;
   background-color: rgba(0, 0, 0, 0.8);
   padding: 18px;
@@ -205,5 +201,15 @@ body, html {
   background-color: #32383e;
   color: white;
   width: 400px; }
+
+.notification {
+  position: fixed;
+  left: 0px;
+  top: 10px;
+  width: 100%;
+  height: 40px;
+  font-size: 30px;
+  background-color: red;
+  color: white; }
 
 /*# sourceMappingURL=style.css.map */

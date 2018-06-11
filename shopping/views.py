@@ -1,19 +1,18 @@
 from functools import reduce
-from urllib.parse import urlencode
+
 
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render
 
-from shopping.forms import SignUpForm, OrderForm, OrderModel
+from shopping import notifications
+from shopping.cart import addToCart, userCartItems
+from shopping.forms import SignUpForm, OrderForm
+from shopping.view_environment import environment
 from .models import Item, ShoppingCart
 
 from django.contrib.auth import  authenticate,logout
 from django.contrib.auth import login as djangologin
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.core.mail import send_mail
-
-
-from django.contrib.auth.models import User, AnonymousUser
 
 
 def register(request):
@@ -26,7 +25,7 @@ def register(request):
             user = authenticate(username=username, password=raw_password)
             djangologin(request, user)
             #return redirect('index', args=(notification))
-            return HttpResponseRedirect("/shop")
+            return HttpResponseRedirect("/shop?notification=registered")
     else:
         form = SignUpForm()
     site_env = {'subview': 'register','form':form}
@@ -36,8 +35,7 @@ def register(request):
 def order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
-        if form.is_valid():
-            #form.save()
+        if form.is_valid():            
             zip = form.cleaned_data.get('zip')
             street = form.cleaned_data.get('street')
             streetnumber = form.cleaned_data.get('streetnumber')
@@ -52,12 +50,16 @@ def order(request):
                 'noreply@huck-it.de',
                 [email],
                 fail_silently=False,
-            )
-            #return redirect('index', args=(notification))
+            )            
             return HttpResponseRedirect("/shop/orderconfirmation")
     else:
         form = OrderForm()
     site_env = {'subview': 'order','form':form}
+    env = environment(request, site_env)
+    return render(request, 'shopping/index.html', env)
+
+def login(request):
+    site_env = {'subview':'login'}
     env = environment(request, site_env)
     return render(request, 'shopping/index.html', env)
 
@@ -75,11 +77,6 @@ def complete_order(request):
         item.product.save()
         item.delete()
 
-
-
-
-
-notificationDict = {'registered':'You have successfully signed up!','outofstock':'Sorry, we are out of stock'}
 
 def index(request):
 
@@ -113,32 +110,6 @@ def index(request):
 
 
 
-def environment(request,site_env):
-    notification = None
-    notificationKey = request.GET.get("notification")
-    if notificationKey is not None:
-        notification = notificationDict[notificationKey]
-
-
-    loggedIn = request.user.is_authenticated
-    username = request.user.username
-
-        # raise Http404("filtered" + str(len(all_items)))
-
-    result = {}
-    if loggedIn:
-        shoppingCartItemCount = userCartItemCount(username)
-        result =   {'username': username,
-                       'loggedIn': True, 'shoppingCartItemCount': shoppingCartItemCount, 'notification': notification}
-    else:
-        result =  { 'username': username,
-                       'loggedIn': False, 'notification': notification }
-
-    merged_result = z = {**result, **site_env}
-
-    return merged_result
-
-
 def cart(request):
     user_id = request.user.username
     cartitems = userCartItems(user_id)
@@ -154,53 +125,6 @@ def cart(request):
     env = environment(request, site_env)
     return render(request, 'shopping/index.html', env)
 
-
-
-def addToCart(user_name,product,quantity = 1):
-    availability = checkAvailability(product.id)
-    if availability < quantity:
-        raise Exception("Out of stock")
-    try:
-        cartEntries = ShoppingCart.objects.filter(product= product, user_name= user_name)
-        if len(cartEntries) == 0:
-            raise ShoppingCart.DoesNotExist
-        cartEntry = cartEntries[0]
-        cartEntry.quantity = quantity + cartEntry.quantity
-        cartEntry.save()
-
-    except ShoppingCart.DoesNotExist as e:
-        cart = ShoppingCart(product= product, user_name= user_name,quantity=quantity)
-        cart.save()
-
-    return HttpResponseRedirect("/shop/"+str(product))
-
-
-
-def checkAvailability(product_id):
-    #TODO: handle case if product id is not existing
-    item = Item.objects.filter(id=product_id)[0]
-    stock = item.stock
-    reservations = ShoppingCart.objects.filter(product_id=product_id)
-    reservationcount = 0
-    for reservation in reservations:
-        reservationcount += reservation.quantity
-    availablequantity = stock - reservationcount
-    print("available are"+str(stock))
-    return availablequantity
-
-def userCartItems(user_id):
-    cart_items = ShoppingCart.objects.filter(user_name=user_id)
-    return cart_items
-
-
-def userCartItemCount(user_id):
-    itemquantitites = map(lambda  cart : cart.quantity, userCartItems(user_id))
-    try:
-        cartitemnumber =  reduce(lambda  x,y: x + y ,itemquantitites)
-    except:
-        cartitemnumber = 0
-
-    return cartitemnumber
 
 
 def detail(request, item_id):
@@ -229,10 +153,6 @@ def detail(request, item_id):
 
 
 
-def login(request):
-    site_env = {'subview':'login'}
-    env = environment(request, site_env)
-    return render(request, 'shopping/index.html', env)
 
 
 

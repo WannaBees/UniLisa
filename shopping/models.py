@@ -7,7 +7,6 @@ class Item(models.Model):
     item_photo = models.ImageField(upload_to='static/shopping/upload')
     price = models.PositiveIntegerField(default = 10 )
     stock = models.PositiveIntegerField(default=10)
-    #thumb = models.ImageField(default='default.png', blank=True)
 
 class ShoppingCart(models.Model):
     user_name = models.CharField(max_length=1000)
@@ -16,7 +15,7 @@ class ShoppingCart(models.Model):
         , on_delete=models.CASCADE,null=True)
 
     quantity = models.PositiveIntegerField(default=0)
-    # thumb = models.ImageField(default='default.png', blank=True)
+
 
     def __str__(self):
         return self.item_name
